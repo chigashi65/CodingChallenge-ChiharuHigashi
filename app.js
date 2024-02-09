@@ -65,3 +65,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+
+const express = require('express');
+const bodyParser = require('body-parser');
+const fs = require('fs');
+
+const app = express();
+const port = 3000;
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/index.html');
+});
+
+app.post('/register', (req, res) => {
+    const email = req.body.email;
+
+    // Basic email validation
+    if (isValidEmail(email)) {
+        // Save the email to a file, database, or perform any desired action
+        const file = 'registered_emails.txt';
+        fs.appendFileSync(file, email + '\n');
+
+        // Optionally, you can send a response or redirect the user
+        res.send('Thank you for registering!');
+    } else {
+        // Handle invalid email address
+        res.status(400).send('Invalid email address.');
+    }
+});
+
+function isValidEmail(email) {
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+app.listen(port, () => {
+    console.log(`Server is running at http://localhost:${port}`);
+});
