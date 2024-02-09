@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Aggregator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <img src="./assets/headerImage.jpg" alt="Header Image" />
+    </header>
+    <div class="email">
+        <form action="/register" method="post">
+            <label for="email">SUBSCRIBE NOW!</label>
+            <input type="email" id="email" name="email" placeholder="example@ex.com" required>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+    <div class="container">
+        <div class="filters">
+            <label for="category">Filter by Category:</label>
+            <select id="category">
+                <option value="">All Categories</option>
+                <option value="business">Business</option>
+                <option value="technology">Technology</option>
+                <option value="science">Science</option>
+                <option value="animal">Animal</option>
+                <option value="food">Food</option>
+            </select>
+
+            <label for="source">Filter by Source:</label>
+            <select id="source">
+                <option value="">All Sources</option>
+            </select>
+        </div>
+
+        <div id="newsList" class="news-container"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
